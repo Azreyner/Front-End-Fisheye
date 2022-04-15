@@ -39,12 +39,86 @@ h1 {
     flex-direction: column;
 }
 
+.photographer_section a {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+}
+
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    font-weight: 500;
+    text-align: center;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.photographer_section div {
+    margin-top: -30px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.photographer_section div .villePays {
+    color: #901C1C;
+    font-size: 20px;
+    margin: 10px;;
+}
+
+.photographer_section div .tagline {
+    margin: -10px 0;
+}
+
+.photographer_section div .prix {
+    color: #757575;
+    font-size: 14px;
+}
+
+
+/* PAGE PHOTOGRAPHER */
+
+.triage{
+    margin: 30px 100px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-width: 300px;
+    width: 20%;
+}
+
+.triage label{
+    margin-right: 25px;
+    font-weight: bold;
+}
+
+.triage select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;       /* Remove default arrow */
+    background-image: url("/assets/icons/icons8-chevron-24.png");   /* Add custom arrow */
+    background-repeat: no-repeat;
+    background-position: 100px;
+    background-color: #901C1C;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    min-width: 130px;
+}
+
+.triage select option{
+    padding: 15px;
+    border-top: white solid 1px;
 }

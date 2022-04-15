@@ -5,7 +5,11 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     margin: 0 100px;
+    border-radius: 5px;
 }
 
 .contact_button {
@@ -73,4 +77,57 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.infoPhotographe{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.infoPhotographe p{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.listeImage{
+    margin: 0 100px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.unMedia{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.imagePhotographer{
+    height: 300px;
+    width: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.lesInfos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lesInfos img{
+    height: 16px;
+    margin-top: -10px;
+}
+
+.titreImage{
+    color: #901C1C;
+    font-size: 20px;
 }
