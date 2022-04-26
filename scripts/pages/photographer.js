@@ -26,6 +26,8 @@ function profil(photographe){
 
 async function getMedia(id) {
 
+    let tableauMedia = [];
+
     let result = await fetch('../../data/photographers.json')
         .then(response => {
             if (!response.ok) {
@@ -44,24 +46,19 @@ async function getMedia(id) {
     // et bien retourner le tableau photographers seulement une fois
     
 
-    //console.log("test ", result)
-
     result.forEach(unMedia => { 
-        if(unMedia['photographerId'] != id){
-            //console.log(unMedia['photographerId'], result.indexOf(unMedia))
-            result.splice(result.indexOf(unMedia), 1);
-            //console.log(result);    
+        if(unMedia['photographerId'] === id){
+            tableauMedia.push(unMedia);
         }
     });
 
-    return result;
+    return tableauMedia;
 }
 
 async function displayData(lesMedia) {
     const listeImage = document.querySelector(".listeImage");
 
     lesMedia.forEach((leMedia) => {
-        console.log(leMedia)
         const leMediaModel = mediaFactory(leMedia);
         const leMediaDom = leMediaModel.getMediaCardDOM();
         

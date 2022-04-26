@@ -1,14 +1,21 @@
 function mediaFactory(data) {
-    const { id, photographerId, title, image, likes, price, date } = data;
+    const { id, photographerId, title, image, video, likes, price, date } = data;
     //console.log("test const data : ", data);
-    const picture = `assets/images/${image}`;
+    let mediaLink;
     const heartLink = "assets/icons/heart.png"
 
     function getMediaCardDOM() {
         
         // Création d'élement
         const divImage = document.createElement('div');
-        const pic = document.createElement( 'img' );
+        let media;
+        if(!image){
+            media = document.createElement( 'video' );
+            mediaLink = `assets/images/${video}`;
+        }else{
+            media = document.createElement( 'img' );
+            mediaLink = `assets/images/${image}`
+        }
         const infos  = document.createElement('div');
         const textTitre = document.createElement( 'p' );
         const like = document.createElement( 'p' );
@@ -19,8 +26,9 @@ function mediaFactory(data) {
 
         //Set attribute
         divImage.setAttribute("class", "unMedia")
-        pic.setAttribute("src", picture)
-        pic.setAttribute("class", "imagePhotographer")
+        media.setAttribute("src", mediaLink)
+        media.setAttribute("class", "imagePhotographer")
+        media.setAttribute("alt", title)
         textTitre.setAttribute("class", "titreImage")
         like.setAttribute("class", "nbLike")
         infos.setAttribute("class", "lesInfos")
@@ -28,7 +36,7 @@ function mediaFactory(data) {
         heartPNG.setAttribute("src", heartLink)
 
         // place les éléments
-        divImage.appendChild(pic);
+        divImage.appendChild(media);
         infos.appendChild(textTitre);
         infos.appendChild(like);
         infos.appendChild(heartPNG)

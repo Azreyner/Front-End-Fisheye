@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -9,9 +9,9 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" alt="Fish eye" class="logo" />
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <div class="infoPhotographe">
 
@@ -19,27 +19,39 @@
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
     </main>
-    <div class="triage">
-      <label for="trie-select">Trier par</label>
+    <div class="triage" aria-hidden="false">
+      <label for="trieur">Trier par</label>
       <select name="trie" id="trieur">
         <option value="popularité">Popularité</option>
         <option value="date">Date</option>
         <option value="titre">Titre</option>
       </select>
     </div>
-    <div class="listeImage">
+    <div class="listeImage" aria-hidden="false">
 
     </div>
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog" aria-describedby="modalTitle">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modalTitle">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" alt="Fermeture modal" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="form">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="prenom">Prénom</label>
+						<input name="prenom" id="prenom"/>
+					</div>
+          <div>
+						<label for="nom">Nom</label>
+						<input name="nom" id="nom"/>
+					</div>
+          <div>
+						<label for="mail">Email</label>
+						<input name="mail" id="mail" />
+					</div>
+          <div>
+						<label for="message">Votre message</label>
+						<input name="message" id="message"/>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
