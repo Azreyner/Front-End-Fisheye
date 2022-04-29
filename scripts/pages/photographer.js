@@ -1,6 +1,7 @@
 function profil(photographe){
     const infoPhotographe = document.querySelector(".infoPhotographe");
     const photographeHeader = document.querySelector(".photograph-header");
+    const photographePrix = document.querySelector(".infoComplementaire .prix")
 
     const nom = document.createElement('h1');
     const villeCountry = document.createElement('span');
@@ -11,6 +12,7 @@ function profil(photographe){
     nom.textContent = photographe.name;
     villeCountry.textContent = photographe.city + ", " + photographe.country;
     tagline.textContent = photographe.tagline;
+    photographePrix.textContent = photographe.price+ "€ / jour"
 
     image.setAttribute("src", photographe.picture)
     villeCountry.setAttribute("class", "villePays");
@@ -37,7 +39,6 @@ async function getMedia(id) {
         })
         .then(data => {
             
-            
             return data.media;
         })
         .catch(function () {
@@ -53,6 +54,21 @@ async function getMedia(id) {
     });
 
     return tableauMedia;
+}
+
+function getTotalLike(lesMedias){
+    lesMedias.forEach((leMedia) => {
+        nbLiketotal += leMedia.likes;
+    });
+}
+
+//ajouter un like
+function addLike(lElement){
+
+    nbLiketotal++;
+    prixJour.innerText = nbLiketotal;
+
+    lElement.removeEventListener("click", addLike)
 }
 
 async function displayData(lesMedia) {
@@ -77,12 +93,64 @@ async function init() {
 
     profil(photographe);
 
-    const lesMedia = await getMedia(id);
+    //on récupère tous les médias du photographe
+    lesMedias = await getMedia(id);
 
-    console.log("La liste de photo de", photographe.name, ":", lesMedia);
+    //met à jours le nombre de total de like
+    getTotalLike(lesMedias);
+    
+    prixJour.innerText = nbLiketotal;
+      
 
-    displayData(lesMedia);
+    console.log("La liste de photo de", photographe.name, ":", lesMedias);
+
+    lesMedias.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
+
+    displayData(lesMedias);
+
+    const blocsLike = document.querySelectorAll(".blocLike")
+
+    blocsLike.forEach((leBloc) => {
+        leBloc.addEventListener("click", addLike(leBloc))
+    })
 
 };
+
+function clickTrieur(){
+    currentOption = trieur.value;
+    majListeImage();
+}
+
+//permet de trier la liste d'images/vidéo
+function majListeImage(){
+    listeImage.innerHTML = '';
+    console.log(currentOption)
+    switch (currentOption) {
+        case 'popularité':
+            lesMedias.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
+            displayData(lesMedias)
+            break;
+        case 'date':
+            lesMedias.sort((a, b) => (a.date < b.date) ? 1 : -1)
+            displayData(lesMedias)
+            break;
+        case 'titre':
+            lesMedias.sort((a, b) => (a.title > b.title) ? 1 : -1)
+            displayData(lesMedias)
+            console.log('Mangoes and papayas are $2.79 a pound.');
+            // expected output: "Mangoes and papayas are $2.79 a pound."
+            break;
+        default:
+            console.log("Erreur trieur vide.");
+      }
+}
+
+let lesMedias = [];
+let nbLiketotal = 0;
+let currentOption = "Popularité"
+
+
+const prixJour = document.querySelector(".likeGlobal p");
+const trieur = document.getElementById("trieur")
 
 init();

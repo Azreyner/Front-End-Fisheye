@@ -17,7 +17,6 @@ function closeModal() {
     main.setAttribute("aria-hidden", "false")
     listeImage.setAttribute("aria-hidden", "false")
     triage.setAttribute("aria-hidden", "false")
-    const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
     modal.setAttribute("aria-hidden", "true")
 }

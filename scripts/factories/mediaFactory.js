@@ -2,7 +2,7 @@ function mediaFactory(data) {
     const { id, photographerId, title, image, video, likes, price, date } = data;
     //console.log("test const data : ", data);
     let mediaLink;
-    const heartLink = "assets/icons/heart.png"
+    const heartLink = "assets/icons/heart.svg"
 
     function getMediaCardDOM() {
         
@@ -20,6 +20,7 @@ function mediaFactory(data) {
         const textTitre = document.createElement( 'p' );
         const like = document.createElement( 'p' );
         const heartPNG = document.createElement('img');
+        const blocLike = document.createElement('div');
 
         textTitre.textContent = title;
         like.textContent = likes;
@@ -29,7 +30,10 @@ function mediaFactory(data) {
         media.setAttribute("src", mediaLink)
         media.setAttribute("class", "imagePhotographer")
         media.setAttribute("alt", title)
+        media.setAttribute("onclick", "displayLightbox(this.id)")
+        media.setAttribute("id", id)
         textTitre.setAttribute("class", "titreImage")
+        blocLike.setAttribute("class", "blocLike")
         like.setAttribute("class", "nbLike")
         infos.setAttribute("class", "lesInfos")
         heartPNG.setAttribute("alt", "likes")
@@ -38,8 +42,9 @@ function mediaFactory(data) {
         // place les éléments
         divImage.appendChild(media);
         infos.appendChild(textTitre);
-        infos.appendChild(like);
-        infos.appendChild(heartPNG)
+        infos.appendChild(blocLike);
+        blocLike.appendChild(like)
+        blocLike.appendChild(heartPNG)
         divImage.appendChild(infos)
         
         return (divImage);

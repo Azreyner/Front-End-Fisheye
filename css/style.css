@@ -104,8 +104,8 @@ h1 {
 .triage select{
     -webkit-appearance: none;
     -moz-appearance: none;
-    appearance: none;       /* Remove default arrow */
-    background-image: url("/assets/icons/icons8-chevron-24.png");   /* Add custom arrow */
+    appearance: none;      
+    background-image: url("/assets/icons/icons8-chevron-24.png");
     background-repeat: no-repeat;
     background-position: 100px;
     background-color: #901C1C;

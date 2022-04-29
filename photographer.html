@@ -21,7 +21,7 @@
     </main>
     <div class="triage" aria-hidden="false">
       <label for="trieur">Trier par</label>
-      <select name="trie" id="trieur">
+      <select onchange="clickTrieur()" name="trie" id="trieur">
         <option value="popularité">Popularité</option>
         <option value="date">Date</option>
         <option value="titre">Titre</option>
@@ -57,8 +57,30 @@
 				</form>
 			</div>
 		</div>
+    <div id="lightbox-global" role="dialog" aria-label="image closeup view">
+			<div class="lightbox">
+        <img src="assets/icons/closeRed.svg" class="fermetureLightbox" alt="Fermeture modal" onclick="closeLightbox()" />
+        <div class="slider">
+          <img src="assets/icons/chevronGauche.svg" alt="image précédente" class="chevron chevron-gauche" onclick="previous()">
+          <img src="" class="mediaLightbox imageLightbox" alt="">
+          <video controls autoplay src="" class="mediaLightbox videoLightbox" alt=""></video>
+          <img src="assets/icons/chevronDroite.svg" alt="image suivante" class="chevron chevron-droit" onclick="next()">
+        </div>
+        <p>
+          titre
+        </p>
+			</div>
+		</div>
+    <div class="infoComplementaire">
+      <div class="likeGlobal">
+        <p>100</p>
+        <img src="assets/icons/blackHeart.svg" alt="Coeur" >
+      </div>
+      <p class="prix">Loreum</p>
+    </div>
     <script src="/scripts/factories/mediaFactory.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightBox.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
   </body>
 </html>
