@@ -1,9 +1,9 @@
 const main = document.querySelector("main")
 const listeImage = document.querySelector(".listeImage")
 const triage = document.querySelector(".triage");
-const bouttonFermer = document.querySelector(".modal header img");
 const modal = document.getElementById("contact_modal");
 
+/* eslint-disable-no-unused-vars indent */
 function displayModal() {
     main.setAttribute("aria-hidden", "true")
     listeImage.setAttribute("aria-hidden", "true")
@@ -12,6 +12,7 @@ function displayModal() {
 	modal.style.display = "block";
     document.getElementById("prenom").focus();
 }
+/* eslint-enable-no-unused-vars indent */
 
 function closeModal() {
     main.setAttribute("aria-hidden", "false")

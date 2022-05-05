@@ -5,6 +5,21 @@ function mediaFactory(data) {
     const heartLink = "assets/icons/heart.svg"
 
     function getMediaCardDOM() {
+
+        //ajouter un like
+        function addLike(){
+            console.log("erzer")
+            let likeUneImage = blocLike.firstChild.innerHTML;
+            likeUneImage++;
+
+            blocLike.firstChild.innerText = likeUneImage++;
+
+            //nbLiketotal++;
+            //prixJour.innerText = nbLiketotal;
+
+            //delLike(lElement)
+            blocLike.removeEventListener("click", addLike, true)
+        }
         
         // Création d'élement
         const divImage = document.createElement('div');
@@ -34,6 +49,7 @@ function mediaFactory(data) {
         media.setAttribute("id", id)
         textTitre.setAttribute("class", "titreImage")
         blocLike.setAttribute("class", "blocLike")
+        //blocLike.setAttribute("id", i++)
         like.setAttribute("class", "nbLike")
         infos.setAttribute("class", "lesInfos")
         heartPNG.setAttribute("alt", "likes")
@@ -45,9 +61,20 @@ function mediaFactory(data) {
         infos.appendChild(blocLike);
         blocLike.appendChild(like)
         blocLike.appendChild(heartPNG)
+        blocLike.addEventListener("click", addLike, true)
+        /*blocLike.addEventListener('click', function() {
+            let likeUneImage = blocLike.firstChild.innerHTML;
+            likeUneImage++;
+
+            blocLike.firstChild.innerText = likeUneImage++;
+
+            // this fait référence à l'élément HTML "block like"
+            this.removeEventListener('click', arguments.callee);
+        });*/
         divImage.appendChild(infos)
-        
+
         return (divImage);
     }
+
     return { id, photographerId, title, image, likes, price, date, getMediaCardDOM }
 }

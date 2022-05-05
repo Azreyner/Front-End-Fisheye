@@ -52,6 +52,8 @@ function getUrlImage(mediaId){
     return media;
 }
 
+
+//photo ou image suivante
 function next(){
     if(currentPosition != lesMedias.length-1){
         currentPosition++;
@@ -76,6 +78,7 @@ function next(){
     titreImage.innerText = leMedia.title
 }
 
+//photos ou images précédentes
 function previous(){
     if(currentPosition != 0){
         currentPosition--;
@@ -91,37 +94,13 @@ function previous(){
         image.style.display = "block";
     }
     else{
-        video.setAttribute("src", "assets/images/"+ unMedia.video)
+        video.setAttribute("src", "assets/images/"+ leMedia.video)
         video.setAttribute("alt", leMedia.title)
         image.style.display = "none";
         video.style.display = "block";
     }
     titreImage.innerText = leMedia.title
 }
-
-/*function sendModal(e){
-    console.log("test send")
-    e.preventDefault();
-    fetch("https://mockbin.com/request", {
-        method: "POST",
-        headers: {
-        'Accept': 'application/json', 
-        'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({Prénom: document.getElementById("prenom").value, Nom : document.getElementById("nom").value, Mail : document.getElementById("mail").value, Message : document.getElementById("message").value})
-    })
-    .then(function(res) {
-        if (res.ok) {
-            return res.json();
-        }
-    })
-    .then(function(value) {
-        console.log(value.postData.text);
-    });
-
-}*/
-
-//document.getElementById("form").addEventListener("submit", sendModal);
 
 document.addEventListener('keydown', function(event){
 	if(event.key === "Escape" && lightbox.getAttribute('aria-hidden') === 'false'){

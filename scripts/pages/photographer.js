@@ -62,15 +62,6 @@ function getTotalLike(lesMedias){
     });
 }
 
-//ajouter un like
-function addLike(lElement){
-
-    nbLiketotal++;
-    prixJour.innerText = nbLiketotal;
-
-    lElement.removeEventListener("click", addLike)
-}
-
 async function displayData(lesMedia) {
     const listeImage = document.querySelector(".listeImage");
 
@@ -82,7 +73,7 @@ async function displayData(lesMedia) {
         listeImage.appendChild(leMediaDom);
     });
 
-};
+}
 
 async function init() {
     
@@ -100,21 +91,20 @@ async function init() {
     getTotalLike(lesMedias);
     
     prixJour.innerText = nbLiketotal;
-      
 
-    console.log("La liste de photo de", photographe.name, ":", lesMedias);
-
+    //tirage des photos et vidéos puis affichage
     lesMedias.sort((a, b) => (a.likes < b.likes) ? 1 : -1)
-
     displayData(lesMedias);
 
-    const blocsLike = document.querySelectorAll(".blocLike")
 
+    //récupération des blocs "nombre de like"
+    const blocsLike = document.querySelectorAll(".blocLike")
+    //On ajoute un eventListener sur tout ces blocs
     blocsLike.forEach((leBloc) => {
-        leBloc.addEventListener("click", addLike(leBloc))
+        leBloc.addEventListener("onchange", () => delLike(leBloc))
     })
 
-};
+}
 
 function clickTrieur(){
     currentOption = trieur.value;
