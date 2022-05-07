@@ -14,10 +14,9 @@ function mediaFactory(data) {
 
             blocLike.firstChild.innerText = likeUneImage++;
 
-            //nbLiketotal++;
-            //prixJour.innerText = nbLiketotal;
+            nbLiketotal++;
+            prixJour.innerText = nbLiketotal;
 
-            //delLike(lElement)
             blocLike.removeEventListener("click", addLike, true)
         }
         
