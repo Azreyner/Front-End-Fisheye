@@ -15,6 +15,7 @@ function profil(photographe){
     photographePrix.textContent = photographe.price+ "€ / jour"
 
     image.setAttribute("src", photographe.picture)
+    image.setAttribute("alt", photographe.name)
     villeCountry.setAttribute("class", "villePays");
     tagline.setAttribute("class", "tagline");
 
@@ -64,6 +65,7 @@ function getTotalLike(lesMedias){
 
 async function displayData(lesMedia) {
     const listeImage = document.querySelector(".listeImage");
+    listeImage.setAttribute("aria-label", "Liste d'image")
 
     lesMedia.forEach((leMedia) => {
         const leMediaModel = mediaFactory(leMedia);

@@ -41,9 +41,10 @@ function mediaFactory(data) {
 
         //Set attribute
         divImage.setAttribute("class", "unMedia")
+        divImage.setAttribute("role", "button")
         media.setAttribute("src", mediaLink)
         media.setAttribute("class", "imagePhotographer")
-        media.setAttribute("alt", title)
+        //media.setAttribute("alt", title)
         media.setAttribute("onclick", "displayLightbox(this.id)")
         media.setAttribute("id", id)
         textTitre.setAttribute("class", "titreImage")
