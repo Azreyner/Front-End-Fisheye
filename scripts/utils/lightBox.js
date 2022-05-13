@@ -7,6 +7,9 @@ const video = document.querySelector(".slider .videoLightbox");
 const image = document.querySelector(".slider .imageLightbox");
 let currentPosition;
 let titreImage = document.querySelector(".lightbox p");
+let lightboxIsOpen = false;
+
+document.onkeydown = checkKey;
 
 function displayLightbox(mediaId) {
     const unMedia = getUrlImage(mediaId)
@@ -22,13 +25,13 @@ function displayLightbox(mediaId) {
         image.style.display = "none";
         video.style.display = "block";
     }
-    console.log(currentPosition)
     titreImage.innerText = unMedia.title
     main.setAttribute("aria-hidden", "true")
     listeImage.setAttribute("aria-hidden", "true")
     triage.setAttribute("aria-hidden", "true")
     lightbox.setAttribute("aria-hidden", "false")
 	lightbox.style.display = "flex";
+    lightboxIsOpen = true;
     
 }
 
@@ -38,6 +41,7 @@ function closeLightbox() {
     triage.setAttribute("aria-hidden", "false")
     lightbox.style.display = "none";
     lightbox.setAttribute("aria-hidden", "true")
+    lightboxIsOpen = false;
 }
 
 function getUrlImage(mediaId){
@@ -107,3 +111,16 @@ document.addEventListener('keydown', function(event){
 		closeLightbox()
 	}
 });
+
+function checkKey(e) {
+
+    if(lightboxIsOpen){
+        if (e.keyCode == '37') {
+            previous()
+         }
+         else if (e.keyCode == '39') {
+            next()
+         }
+    }
+    
+}
