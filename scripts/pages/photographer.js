@@ -1,3 +1,4 @@
+//ici on construit la partie "profil" du photographe
 function profil(photographe){
     const infoPhotographe = document.querySelector(".infoPhotographe");
     const photographeHeader = document.querySelector(".photograph-header");
@@ -27,6 +28,7 @@ function profil(photographe){
     photographeHeader.appendChild(image);
 }
 
+//ici on retourne donc un tableau d'images et de photos (seulement les medias qui sont liés à l'ID du photographe) 
 async function getMedia(id) {
 
     let tableauMedia = [];
@@ -45,7 +47,6 @@ async function getMedia(id) {
         .catch(function () {
             this.dataError = true;
         })
-    // et bien retourner le tableau photographers seulement une fois
     
 
     result.forEach(unMedia => { 
@@ -57,12 +58,15 @@ async function getMedia(id) {
     return tableauMedia;
 }
 
+//calcule le nombre total de like qu'a reçu un photographe
 function getTotalLike(lesMedias){
     lesMedias.forEach((leMedia) => {
         nbLiketotal += leMedia.likes;
     });
 }
 
+
+//On affiche la liste d'images et de vidéos
 async function displayData(lesMedia) {
     const listeImage = document.querySelector(".listeImage");
     //listeImage.setAttribute("aria-label", "Liste d'image")
@@ -73,6 +77,7 @@ async function displayData(lesMedia) {
         const leMediaModel = mediaFactory(leMedia, i);
         const leMediaDom = leMediaModel.getMediaCardDOM();
         
+        //ici on incrémente une valeur qui va servir à incrémenter l'index du "tabindex"
         i = i + 1;
         listeImage.appendChild(leMediaDom);
         
@@ -81,15 +86,18 @@ async function displayData(lesMedia) {
 }
 
 async function init() {
-    
+
+    //on récupère les paramètres dans l'URL la page, ici on veut récupérer l'ID du photographe
     let params = (new URL(document.location)).searchParams;
     let id = parseInt(params.get('id'));
 
+    //grâce à l'ID dans la barre URL on récupère le photogrpahe contenu dans le local storage 
     const photographe = JSON.parse(localStorage.getItem(id));
 
+    //on créé le photographe grâce à l'ID récupéré juste au-dessus
     profil(photographe);
 
-    //on récupère tous les médias du photographe
+    //on récupère tous les médias du photographe grâce à son id
     lesMedias = await getMedia(id);
 
     //met à jours le nombre de total de like
@@ -111,8 +119,11 @@ async function init() {
 
 }
 
+
+//quand on change la valeur du select cette fonction se lance
 function clickTrieur(){
     currentOption = trieur.value;
+    //on appelle la fonction qui va trier la liste d'image
     majListeImage();
 }
 
@@ -132,14 +143,13 @@ function majListeImage(){
         case 'titre':
             lesMedias.sort((a, b) => (a.title > b.title) ? 1 : -1)
             displayData(lesMedias)
-            console.log('Mangoes and papayas are $2.79 a pound.');
-            // expected output: "Mangoes and papayas are $2.79 a pound."
             break;
         default:
             console.log("Erreur trieur vide.");
       }
 }
 
+//On initialise les variables qui vont servir sur la page du photographe : le tableau de photos/vidéo, les likes totaux, l'option de trie des medias...
 let lesMedias = [];
 let nbLiketotal = 0;
 let currentOption = "Popularité"

@@ -52,9 +52,11 @@ function mediaFactory(data, index) {
         divImage.setAttribute("tabindex", index)
         media.setAttribute("src", mediaLink)
         media.setAttribute("class", "imagePhotographer")
-        //media.setAttribute("alt", title)
+        
+        //c'est grâce à ces deux attributs que la fonction "displayLightbox" dans mediaFactory.js marche
         media.setAttribute("onclick", "displayLightbox(this.id)")
         media.setAttribute("id", id)
+
         media.setAttribute("alt", "")
         textTitre.setAttribute("class", "titreImage")
         blocLike.setAttribute("class", "blocLike")

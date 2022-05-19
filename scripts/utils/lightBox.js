@@ -11,8 +11,12 @@ let lightboxIsOpen = false;
 
 document.onkeydown = checkKey;
 
+//affichage de la lightbox grâce à l'image cliqué (on affiche la bonne image en récuperant son id)
 function displayLightbox(mediaId) {
+
     const unMedia = getUrlImage(mediaId)
+
+    //c'est ici que l'on differencie images et vidéos pour créer le bon élément HTML
     if(unMedia.image){
         image.setAttribute("src", "assets/images/"+ unMedia.image)
         image.setAttribute("alt", unMedia.title)
@@ -35,6 +39,7 @@ function displayLightbox(mediaId) {
     
 }
 
+//Ferme la lightboc
 function closeLightbox() {
     main.setAttribute("aria-hidden", "false")
     listeImage.setAttribute("aria-hidden", "false")
@@ -44,6 +49,7 @@ function closeLightbox() {
     lightboxIsOpen = false;
 }
 
+//grâce à l'ID du media on récupère le lien de l'image
 function getUrlImage(mediaId){
     let media;
     lesMedias.forEach((leMedia, index) => {
@@ -82,7 +88,7 @@ function next(){
     titreImage.innerText = leMedia.title
 }
 
-//photos ou images précédentes
+//photo ou image précédente
 function previous(){
     if(currentPosition != 0){
         currentPosition--;
@@ -106,12 +112,14 @@ function previous(){
     titreImage.innerText = leMedia.title
 }
 
+//si on appuit sur echap la modal se ferme
 document.addEventListener('keydown', function(event){
 	if(event.key === "Escape" && lightbox.getAttribute('aria-hidden') === 'false'){
 		closeLightbox()
 	}
 });
 
+//c'est ici qu'on gère sur quelle touche fléchée on tape pour passer d'une image à une autre dans la lightbox
 function checkKey(e) {
 
     if(lightboxIsOpen){
