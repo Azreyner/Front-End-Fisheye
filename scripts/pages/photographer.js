@@ -65,14 +65,17 @@ function getTotalLike(lesMedias){
 
 async function displayData(lesMedia) {
     const listeImage = document.querySelector(".listeImage");
-    listeImage.setAttribute("aria-label", "Liste d'image")
-
+    //listeImage.setAttribute("aria-label", "Liste d'image")
+    //listeImage.setAttribute("aria-labelledby", "Liste d'image")$
+    let i = 1;
     lesMedia.forEach((leMedia) => {
-        const leMediaModel = mediaFactory(leMedia);
+        
+        const leMediaModel = mediaFactory(leMedia, i);
         const leMediaDom = leMediaModel.getMediaCardDOM();
         
-
+        i = i + 1;
         listeImage.appendChild(leMediaDom);
+        
     });
 
 }

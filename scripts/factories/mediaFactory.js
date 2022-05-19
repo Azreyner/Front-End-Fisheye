@@ -1,4 +1,4 @@
-function mediaFactory(data) {
+function mediaFactory(data, index) {
     const { id, photographerId, title, image, video, likes, price, date } = data;
     //console.log("test const data : ", data);
     let mediaLink;
@@ -18,6 +18,12 @@ function mediaFactory(data) {
             prixJour.innerText = nbLiketotal;
 
             blocLike.removeEventListener("click", addLike, true)
+        }
+
+        function verifKey(){
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                // Do something
+            }
         }
         
         // Création d'élement
@@ -41,12 +47,15 @@ function mediaFactory(data) {
 
         //Set attribute
         divImage.setAttribute("class", "unMedia")
-        divImage.setAttribute("role", "button")
+        //divImage.setAttribute("aria-label", title)
+        divImage.setAttribute("role", "listitem")
+        divImage.setAttribute("tabindex", index)
         media.setAttribute("src", mediaLink)
         media.setAttribute("class", "imagePhotographer")
         //media.setAttribute("alt", title)
         media.setAttribute("onclick", "displayLightbox(this.id)")
         media.setAttribute("id", id)
+        media.setAttribute("alt", "")
         textTitre.setAttribute("class", "titreImage")
         blocLike.setAttribute("class", "blocLike")
         //blocLike.setAttribute("id", i++)
@@ -54,6 +63,12 @@ function mediaFactory(data) {
         infos.setAttribute("class", "lesInfos")
         heartPNG.setAttribute("alt", "likes")
         heartPNG.setAttribute("src", heartLink)
+
+        divImage.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+              displayLightbox(media.id)
+            }
+        });
 
         // place les éléments
         divImage.appendChild(media);
